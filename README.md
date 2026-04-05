@@ -37,11 +37,12 @@ Pyxel の HTML 出力を使うと、スマホのブラウザで遊べます。
 
 ## GitHub Pages で公開
 
-このリポジトリには GitHub Actions で Pages を更新する workflow を追加しています。
+このリポジトリは `docs/index.html` をそのまま GitHub Pages で公開する構成です。
 
 1. GitHub に push する
 2. GitHub の `Settings > Pages` を開く
-3. `Source` を `GitHub Actions` にする
-4. `main` へ push すると自動で公開される
+3. `Source` を `Deploy from a branch` にする
+4. `Branch` を `main`、フォルダを `/docs` にする
+5. `Save` を押す
 
 公開 URL は通常 `https://ractodaisuki.github.io/tetris1/` です。
