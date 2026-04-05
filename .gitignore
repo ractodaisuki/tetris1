@@ -3,3 +3,4 @@
 __pycache__/
 *.pyc
 *.pyxapp
+!docs/docs.pyxapp

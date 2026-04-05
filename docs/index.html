@@ -1,5 +1,260 @@
 <!doctype html>
-<script src="https://cdn.jsdelivr.net/gh/kitao/pyxel@2.8.10/wasm/pyxel.js"></script>
-<script>
-launchPyxel({ command: "play", name: "docs.pyxapp", gamepad: "enabled", base64: "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" });
-</script>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <title>Pyxel Tetris</title>
+  <script src="https://cdn.jsdelivr.net/gh/kitao/pyxel@2.8.10/wasm/pyxel.js"></script>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #11151c;
+      --panel: #1d2430cc;
+      --line: #324156;
+      --text: #f4f7fb;
+      --muted: #a7b4c7;
+      --accent-a: #3f8cff;
+      --accent-b: #ff8f3f;
+      --accent-c: #34c48b;
+      --accent-d: #db5a7a;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html,
+    body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at top, #233047 0%, #11151c 58%),
+        var(--bg);
+      color: var(--text);
+      font-family: monospace;
+      touch-action: manipulation;
+    }
+
+    body {
+      position: relative;
+    }
+
+    div#pyxel-screen {
+      position: absolute;
+      inset: 0 0 172px 0;
+      width: 100%;
+      height: auto;
+      background: transparent;
+    }
+
+    canvas#canvas {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .hud {
+      position: fixed;
+      top: env(safe-area-inset-top, 0);
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 12px 0;
+      pointer-events: none;
+      z-index: 5;
+      font-size: 11px;
+      color: var(--muted);
+      text-shadow: 0 1px 0 #000;
+    }
+
+    .controls {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding:
+        10px 12px calc(10px + env(safe-area-inset-bottom, 0));
+      background: linear-gradient(180deg, transparent 0, var(--panel) 28%, #121923f2 100%);
+      border-top: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 12px;
+      z-index: 10;
+    }
+
+    .pad,
+    .actions {
+      display: grid;
+      gap: 10px;
+    }
+
+    .pad {
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-areas:
+        ". up ."
+        "left down right";
+      align-items: end;
+    }
+
+    .actions {
+      grid-template-columns: repeat(2, 1fr);
+      align-content: end;
+    }
+
+    .btn {
+      appearance: none;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      min-height: 48px;
+      padding: 0 10px;
+      color: var(--text);
+      background: #202938;
+      box-shadow: inset 0 -4px 0 #0d1219;
+      font: 700 15px/1 monospace;
+      touch-action: none;
+      user-select: none;
+    }
+
+    .btn:active,
+    .btn.active {
+      transform: translateY(2px);
+      box-shadow: inset 0 -1px 0 #0d1219;
+      filter: brightness(1.1);
+    }
+
+    .up { grid-area: up; }
+    .left { grid-area: left; }
+    .right { grid-area: right; }
+    .down { grid-area: down; }
+
+    .rot-l { background: color-mix(in srgb, var(--accent-a) 26%, #202938); }
+    .rot-r { background: color-mix(in srgb, var(--accent-b) 28%, #202938); }
+    .drop { background: color-mix(in srgb, var(--accent-c) 26%, #202938); }
+    .reset { background: color-mix(in srgb, var(--accent-d) 26%, #202938); }
+
+    .hint {
+      grid-column: 1 / -1;
+      text-align: center;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.4;
+    }
+
+    @media (min-width: 900px) {
+      div#pyxel-screen {
+        inset: 0 0 132px 0;
+      }
+
+      .controls {
+        grid-template-columns: 340px 300px;
+        justify-content: space-between;
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="hud">
+    <span>SMARTPHONE MODE</span>
+    <span>KEYBOARD ALSO AVAILABLE</span>
+  </div>
+
+  <pyxel-play name="docs.pyxapp"></pyxel-play>
+
+  <div class="controls">
+    <div class="pad">
+      <button class="btn up" data-code="ArrowUp" data-key="ArrowUp" data-keycode="38">UP</button>
+      <button class="btn left" data-code="ArrowLeft" data-key="ArrowLeft" data-keycode="37">LEFT</button>
+      <button class="btn down" data-code="ArrowDown" data-key="ArrowDown" data-keycode="40">DOWN</button>
+      <button class="btn right" data-code="ArrowRight" data-key="ArrowRight" data-keycode="39">RIGHT</button>
+    </div>
+
+    <div class="actions">
+      <button class="btn rot-l" data-code="KeyZ" data-key="z" data-keycode="90">ROT L</button>
+      <button class="btn rot-r" data-code="KeyX" data-key="x" data-keycode="88">ROT R</button>
+      <button class="btn drop" data-code="Space" data-key=" " data-keycode="32">HARD</button>
+      <button class="btn reset" data-code="KeyR" data-key="r" data-keycode="82">RESET</button>
+      <div class="hint">UP or HARD for instant drop / RESET to restart</div>
+    </div>
+  </div>
+
+  <script>
+    const activeButtons = new Map();
+
+    function dispatchKey(type, code, key, keyCode) {
+      document.dispatchEvent(new KeyboardEvent(type, {
+        key,
+        code,
+        keyCode,
+        which: keyCode,
+        bubbles: true,
+        cancelable: true,
+      }));
+    }
+
+    function releaseButton(button) {
+      const state = activeButtons.get(button);
+      if (!state) {
+        return;
+      }
+      activeButtons.delete(button);
+      button.classList.remove("active");
+      dispatchKey("keyup", state.code, state.key, state.keyCode);
+    }
+
+    function pressButton(button) {
+      if (activeButtons.has(button)) {
+        return;
+      }
+      const state = {
+        code: button.dataset.code,
+        key: button.dataset.key,
+        keyCode: Number(button.dataset.keycode),
+      };
+      activeButtons.set(button, state);
+      button.classList.add("active");
+      dispatchKey("keydown", state.code, state.key, state.keyCode);
+    }
+
+    function bindButton(button) {
+      const stop = (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+      };
+
+      button.addEventListener("pointerdown", (event) => {
+        stop(event);
+        pressButton(button);
+      });
+
+      button.addEventListener("pointerup", (event) => {
+        stop(event);
+        releaseButton(button);
+      });
+
+      button.addEventListener("pointercancel", (event) => {
+        stop(event);
+        releaseButton(button);
+      });
+
+      button.addEventListener("pointerleave", (event) => {
+        if (event.buttons !== 1) {
+          return;
+        }
+        stop(event);
+        releaseButton(button);
+      });
+    }
+
+    document.querySelectorAll(".btn[data-code]").forEach(bindButton);
+    window.addEventListener("blur", () => {
+      [...activeButtons.keys()].forEach(releaseButton);
+    });
+  </script>
+</body>
+</html>
