@@ -143,7 +143,7 @@ class TetrisApp:
     def update(self) -> None:
         self.update_touch_state()
 
-        if pyxel.btnp(pyxel.KEY_R) or self.touch_btnp("restart"):
+        if self.btnp((pyxel.KEY_R, pyxel.GAMEPAD1_BUTTON_START, pyxel.GAMEPAD1_BUTTON_BACK)) or self.touch_btnp("restart"):
             self.reset_game()
             return
 
@@ -151,20 +151,20 @@ class TetrisApp:
             return
 
         moved = False
-        if pyxel.btnp(pyxel.KEY_LEFT, hold=8, repeat=2) or self.touch_btnp("left", hold=8, repeat=2):
+        if self.btnp((pyxel.KEY_LEFT, pyxel.GAMEPAD1_BUTTON_DPAD_LEFT), hold=8, repeat=2) or self.touch_btnp("left", hold=8, repeat=2):
             moved = self.try_move(-1, 0) or moved
-        if pyxel.btnp(pyxel.KEY_RIGHT, hold=8, repeat=2) or self.touch_btnp("right", hold=8, repeat=2):
+        if self.btnp((pyxel.KEY_RIGHT, pyxel.GAMEPAD1_BUTTON_DPAD_RIGHT), hold=8, repeat=2) or self.touch_btnp("right", hold=8, repeat=2):
             moved = self.try_move(1, 0) or moved
-        if pyxel.btnp(pyxel.KEY_Z):
+        if self.btnp((pyxel.KEY_Z, pyxel.GAMEPAD1_BUTTON_X)):
             moved = self.try_rotate(-1) or moved
-        if pyxel.btnp(pyxel.KEY_X) or pyxel.btnp(pyxel.KEY_UP) or self.touch_btnp("rotate"):
+        if self.btnp((pyxel.KEY_X, pyxel.KEY_UP, pyxel.GAMEPAD1_BUTTON_A, pyxel.GAMEPAD1_BUTTON_Y)) or self.touch_btnp("rotate"):
             moved = self.try_rotate(1) or moved
-        if pyxel.btnp(pyxel.KEY_SPACE) or self.touch_btnp("drop"):
+        if self.btnp((pyxel.KEY_SPACE, pyxel.GAMEPAD1_BUTTON_B, pyxel.GAMEPAD1_BUTTON_DPAD_UP)) or self.touch_btnp("drop"):
             self.hard_drop()
             return
 
         drop_speed = self.current_drop_frames()
-        soft_drop = pyxel.btn(pyxel.KEY_DOWN) or self.touch_btn("down")
+        soft_drop = self.btn((pyxel.KEY_DOWN, pyxel.GAMEPAD1_BUTTON_DPAD_DOWN)) or self.touch_btn("down")
         self.drop_timer += 1
 
         if soft_drop:
@@ -190,6 +190,12 @@ class TetrisApp:
 
     def current_drop_frames(self) -> int:
         return max(4, DROP_FRAMES - (self.level - 1) * 2)
+
+    def btn(self, buttons: tuple[int, ...]) -> bool:
+        return any(pyxel.btn(button) for button in buttons)
+
+    def btnp(self, buttons: tuple[int, ...], hold: int | None = None, repeat: int | None = None) -> bool:
+        return any(pyxel.btnp(button, hold=hold, repeat=repeat) for button in buttons)
 
     def update_touch_state(self) -> None:
         pointer_down = pyxel.btn(pyxel.MOUSE_BUTTON_LEFT)
@@ -365,9 +371,9 @@ class TetrisApp:
             self.draw_preview_piece(kind, SIDE_X, 66 + index * 24)
 
         pyxel.text(SIDE_X, 146, "KEYBOARD:", 6)
-        pyxel.text(SIDE_X, 154, "Z/X OR TAP", 6)
-        pyxel.text(SIDE_X, 162, "SPACE=HARD", 6)
-        pyxel.text(SIDE_X, 170, "R=RESTART", 6)
+        pyxel.text(SIDE_X, 154, "PAD D/A/B", 6)
+        pyxel.text(SIDE_X, 162, "TAP OR PAD", 6)
+        pyxel.text(SIDE_X, 170, "START=RST", 6)
 
     def draw_overlay(self) -> None:
         pyxel.rect(28, 70, 150, 44, 0)
